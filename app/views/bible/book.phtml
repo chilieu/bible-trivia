@@ -1,0 +1,54 @@
+<?php echo $this->getContent(); ?>
+
+<?php if( count($bible) > 0 ):?>
+
+<div class="col-lg-6 col-md-8 col-sm-12 center-block chapter-title" id="bible-chapter">
+	
+	<?php if( $bible->getFirst()->c > 1 ):?>
+	<a href="<?php echo $this->url->get( $this->router->getControllerName() . '-' . $bible->getFirst()->BookKeyEnglish->slug . '-' . ($bible->getFirst()->c - 1) );?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></a>
+	<?php else:?>
+	<a class="deactivated"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></a>
+	<?php endif;?>
+
+	<span class="text-center">Chapter <?php echo $bible->getFirst()->c;?></span>
+	<?php if( $bible->getFirst()->c < $chapters ):?>
+	<a href="<?php echo $this->url->get( $this->router->getControllerName() . '-' . $bible->getFirst()->BookKeyEnglish->slug . '-' . ($bible->getFirst()->c + 1) );?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+	<?php else:?>
+	<a class="deactivated"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+	<?php endif;?>
+
+</div>
+
+<div class="row">
+	<?php foreach($bible as $p):?>
+		<span class="bible-verse">
+			<a class="label" id="verse-<?php echo $p->b;?><?php echo $p->c;?><?php echo $p->v;?>"><?php echo $p->v;?></a>
+			<span class="bible-verse"><?php echo $p->t;?></span>
+		</span>
+	<?php endforeach;?>
+</div>
+
+<?php else: ?>
+	<center>
+		<h2>About This Version</h2>
+		<h4>This chapter doesn't exist in this version.</h4>
+	</center>
+<?php endif;?>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+
+	$(".bible-verse > .label").click(function(e){
+		$(this).closest(".bible-verse").toggleClass("verse-selected");
+		$(this).toggleClass("verse-number-selected");
+	});
+
+	$(".bible-verse ").click(function(e){
+		//$(this).children(".label").trigger("click");
+	});
+
+});
+
+</script>

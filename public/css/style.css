@@ -1,0 +1,118 @@
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.red-color{color: #FF0000;}
+.red-color:hover{color: #FF0000;}
+
+.black-color{color: #000000;}
+.black-color:hover{color: #000000;}
+
+.white-color{color: #FEFEFE;}
+.white-color:hover{color: #FEFEFE;}
+
+.green-color{color: #3FB618;}
+.green-color:hover{color: #3FB618;}
+
+.green-dark-color{color: #3B8B21;}
+.green-dark-color:hover{color: #3B8B21;}
+
+.orange-color{color: #FF7518;}
+.orange-color:hover{color: #FF7518;}
+
+.blue-color{color: #2780e3;}
+.blue-color:hover{color: #2780e3;}
+
+.gray-color{color: #CCCCCC;}
+.gray-color:hover{color: #CCCCCC;}
+
+.grayDDD-color{color: #DDDDDD;}
+.grayDDD-color:hover{color: #DDDDDD;}
+
+.size2em {
+  font-size: 2em;
+}
+
+.size15em {
+  font-size: 1.5em;
+}
+
+.text-left{text-align: left;}
+.text-center{text-align: center;}
+.text-right{text-align: right;}
+
+.vertical-middle{vertical-align: middle;}
+
+.list-group-item{
+  border:none;
+}
+
+ul.question-list>li, ul.question-list-result>li {
+  border: 1px solid #CCCCCC;
+  margin-bottom: 25px;
+}
+
+.back-to-top {
+    z-index: 999;
+    position: fixed;
+    bottom: 0.3em;
+    right: 0.3em;
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 40px;
+    padding: 0.1em;
+    display: none;
+}
+
+.back-to-top:hover {    
+    cursor: pointer;
+}
+
+.alert-default {
+  background-color: #CCCCCC;
+}
+
+.alert-light-green {
+  background-color: #75FA7B;
+}
+
+.question-list-result .alert {
+  padding: 5px 15px;
+  margin-bottom: 10px;
+}
+
+img.img-question {max-width:100%}
+
+.truncate-text {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; // This is where the magic happens
+}
+
+.nav-tabs{
+  margin-bottom: 30px;
+}

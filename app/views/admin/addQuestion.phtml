@@ -1,0 +1,74 @@
+<?php echo $this->getContent(); ?>
+
+<div class="row">
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+
+<div class="col-xs-12 col-md-8 col-sm-12">
+	<h3>Add Question</h3>
+	<?php $this->flashSession->output();?>
+	
+<!--start content-->
+
+<form class="form-horizontal" action="<?php echo $this->url->get( $this->router->getControllerName() . "/save-question");?>" method="POST">
+
+	<div class="form-group">
+	<label for="question">Question</label>
+	<input name="question" type="text" class="form-control" id="question" placeholder="Question ... ?">
+	</div>
+
+	<div class="form-group">
+	<label for="note">Note</label>
+	<input name="note" type="text" class="form-control" id="note" placeholder="Add your note here ...">
+	</div>
+
+	<div class="form-group">
+	<label for="explanation">Explanation</label>
+	<!--input name="explanation" type="text" class="form-control" id="note" placeholder="Add your explanation here ..."-->
+	<textarea name="explanation" class="form-control" id="explanation" placeholder="Add your explanation here ..." ></textarea>
+	</div>
+
+	<div class="form-group">
+	<label for="reference">Reference</label>
+	<input name="reference" type="text" class="form-control" id="reference" placeholder="Add your reference here ...">
+	</div>
+  
+	<div class="form-group checkbox">
+    <label><input name="multiple_choice" value="1" type="checkbox"> Multiple choice</label>
+  	</div>
+  	
+  	<div class="form-group">
+	<h3>Level</h3>
+  	<?php foreach($levels as $item):?>
+    <div class="col-sm-3">
+      <div class="checkbox">
+        <label>
+          <input name="levels[]" type="checkbox" value="<?php echo $item->id;?>"> <?php echo $item->name;?>
+        </label>
+      </div>
+    </div>
+	<?php endforeach;?>
+	</div>
+
+	<div class="form-group" align="center">
+		<button type="submit" class="btn btn-success">Submit</button>
+	</div>
+
+</form>
+
+
+<!--end content-->
+
+</div>
+
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+
+
+});
+
+</script>

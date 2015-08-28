@@ -1,0 +1,115 @@
+<?php echo $this->getContent(); ?>
+
+<div class="row">
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+
+<div class="col-xs-12 col-md-8 col-sm-12">
+	<h3><?php echo $question->question;?></h3>
+	<?php $this->flashSession->output();?>
+<!--start content-->
+
+<form action="<?php echo $this->url->get( $this->router->getControllerName() . "/saveAnswer"); ?>" method="POST">
+<input type="hidden" name="question_id" value="<?php echo $question->id;?>">
+
+<table align="center" class="table table-striped table-bordered" >
+
+	<thead>
+		<tr>
+			<th>Answer</th>
+			<th style="width:15%;">Note</th>
+			<th style="width:10%;">Condition</th>
+			<th style="width:5%;"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td><input name="answer" type="text" class="form-control" id="answer" placeholder="Answer ..."></td>
+
+			<td><input name="note" type="text" class="form-control" id="note" placeholder="Note ..."></td>
+
+			<td>
+		      <div class="checkbox">
+		        <label>
+		          <input name="condition" type="checkbox" value="1" > Correct!
+		        </label>
+		      </div>
+			</td>
+
+			<td><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
+		</tr>
+	</tbody>
+
+</table>
+
+</form>
+
+
+<table align="center" class="table table-striped table-bordered hover" id="list">
+
+	<thead>
+		<tr>
+			<th>Answer</th>
+			<th>Note</th>
+			<th>Condition</th>
+			<th style="width:10%;"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<?php foreach($question->Answer->toArray() as $key => $val):?>
+		<tr id="<?php echo $val['id'];?>">
+			<td><?php echo $val['answer'];?></td>
+			<td><?php echo $val['note'];?></td>
+			<td><?php echo ($val['condition'] == 1) ? "<span class='green-color'>Correct</span>" : "Incorrect";?></td>
+			<td class="vertical-middle text-center"><a href="<?php echo $this->url->get( $this->router->getControllerName() . "/deleteAnswer/" . $val['id']); ?>" class="btn btn-danger delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+		</tr>
+	<?php endforeach;?>
+	</tbody>
+
+</table>
+
+<!--end content-->
+
+</div>
+
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    var table = $('#list').dataTable({
+    	"bFilter" : false, 
+    	"bLengthChange": false,
+    	'iDisplayLength': 100,
+    	"order": [[ 0, "asc" ]],
+		aoColumns: [ {"sName": "answer"},{"sName": "note"}, {"sName": "condition"}, { "bSortable": false } ]
+
+    }).makeEditable({
+    	sUpdateURL: "<?php echo $this->url->get( $this->router->getControllerName() . "/ajaxEditableAnswer") ?>",
+        "aoColumns": [
+                        {
+                            onblur: 'submit',
+                            indicator: 'Saving answer ...'
+                        },
+                        {
+                            onblur: 'submit',
+                            indicator: 'Saving note ...'
+                        },
+                        {
+                        onblur: 'cancel',
+                        type: 'select',
+                        submit   : 'OK',
+                        data: "{'1':'Correct', '0':'Incorrect'}",
+                        indicator: 'Saving answer ...'
+                    	},
+                        null
+                    ]
+
+    });
+
+});
+
+</script>

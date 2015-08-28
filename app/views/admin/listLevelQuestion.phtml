@@ -1,0 +1,47 @@
+<?php echo $this->getContent(); ?>
+
+<div class="row">
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+
+<div class="col-xs-12 col-md-8 col-sm-12">
+	<h1><?php echo $level->name;?></h1>
+	<?php $this->flashSession->output();?>
+	
+<!--start content-->
+
+<table align="center" class="table table-striped table-bordered hover" id="list">
+
+	<thead>
+		<tr>
+			<th>Question</th>
+			<th style="width:10%;"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<?php foreach($level->Question->toArray() as $key => $val):?>
+		<tr id="<?php echo $val['id'];?>">
+			<td><?php echo $val['question'];?></td>
+			<td class="vertical-middle text-center"><a href="<?php echo $this->url->get( $this->router->getControllerName() . "/delete-level-question/" . $level->id . "-" . $val['id']); ?>" class="btn btn-danger delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+		</tr>
+	<?php endforeach;?>
+	</tbody>
+
+</table>
+
+<!--end content-->
+
+</div>
+
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+	var table = $('#list').dataTable();
+
+});
+
+</script>

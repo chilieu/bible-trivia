@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo $this->url->get();?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    <!--Left Nav-->
+    <ul class="nav navbar-nav">
+       
+      <li class="<?php echo ($this->router->getControllerName() == "bible") ? "active" : "";?>"><a href="<?php echo $this->url->get("bible");?>">Bible</a></li>
+      
+    </ul>
+
+    <!--Right Nav-->
+    <?php /*<ul class="nav navbar-nav navbar-right">
+      
+      
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="<?php echo $this->url->get("user");?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Your Profile</a></li>
+        <?php if(!empty($rememberMe)):?>
+          <li class="divider"></li>
+          <li><a href="<?php echo $this->url->get("signin/logout");?>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+        <?php endif;?>
+        </ul>
+      </li>
+
+    </ul>
+    */ ?>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<?php $this->partial("shared/breadcrumb") ?>

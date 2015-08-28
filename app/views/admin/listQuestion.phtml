@@ -1,0 +1,95 @@
+<?php echo $this->getContent(); ?>
+
+<div class="row">
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+
+<div class="col-xs-12 col-md-8 col-sm-12">
+	<h1>Questions
+	<a href="<?php echo $this->url->get( $this->router->getControllerName() . "/add-question") ?>" class="btn btn-success fancybox fancybox.iframe"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+	</h1>
+	<?php $this->flashSession->output();?>
+	
+<!--start content-->
+
+
+<table align="center" class="table table-striped table-bordered table-hover dataTable" id="list">
+    <thead>
+        <tr>
+            <th style="width:10px;">#</th>
+            <th>Question</th>
+            <th style="width:50px;">Note</th>
+            <th style="width:250px;">Explanation</th>
+            <th style="width:50px;">Reference</th>
+            <th style="width:20px;"></th>
+         </tr>
+    </thead>
+    <tbody>
+    <?php $c=1;?>
+    <?php foreach ($list as $item) { ?>
+        <tr id="<?php echo $item->id ?>">
+            <td><?php echo $c;?></td>
+            <td><?php echo $item->question;?></td>
+            <td><?php echo $item->note;?></td>
+            <td><?php echo $item->explanation;?></td>
+            <td><?php echo $item->reference;?></td>
+            <td class="vertical-middle text-center">
+                <a href="<?php echo $this->url->get( $this->router->getControllerName() . "/view-img-question/" . $item->id); ?>" class=" fancybox fancybox.iframe" data-toggle="popover" title="View Image"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a><br>
+                <a href="<?php echo $this->url->get( $this->router->getControllerName() . "/view-video-question/" . $item->id); ?>" class=" fancybox fancybox.iframe" data-toggle="popover" title="Watch Video"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a><br>
+                <a href="<?php echo $this->url->get( $this->router->getControllerName() . "/add-answer/" . $item->id); ?>" class=" fancybox fancybox.iframe" data-toggle="popover" title="Add Answers"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a><br>
+                <a href="<?php echo $this->url->get( $this->router->getControllerName() . "/add-belong-to-level/" . $item->id); ?>" class=" fancybox fancybox.iframe" data-toggle="popover" title="Add to Level"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></a><br>
+                <a href="<?php echo $this->url->get( $this->router->getControllerName() . "/delete-question/" . $item->id); ?>" class="red-color delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+    <?php $c++;;?>
+    <?php } ?>
+    </tbody>
+
+</table>
+
+
+<!--end content-->
+
+</div>
+
+<div class="col-xs-12 col-md-2 col-sm-12 visible-lg-* visible-md-*"></div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    var table = $('#list').dataTable({
+    	
+    	"order": [[ 0, "asc" ]],
+		aoColumns: [ null, {"sName": "question"},{"sName": "note"},{"sName": "explanation"},{"sName": "reference"}, { "bSortable": false }]
+
+    }).makeEditable({
+    	sUpdateURL: "<?php echo $this->url->get( $this->router->getControllerName() . "/ajax-editable-question") ?>",
+        "aoColumns": [
+                        null,
+                        {
+                            onblur: 'submit',
+                            indicator: 'Saving question ...'
+                        },
+                        {
+                            onblur: 'submit',
+                            indicator: 'Saving note ...'
+                        },
+                        {
+                            type: 'textarea',
+                            onblur: 'submit',
+                            indicator: 'Saving explanation ...'
+                        },
+                        {
+                            onblur: 'submit',
+                            indicator: 'Saving reference ...'
+                        },
+                        null
+                    ]
+
+    });
+
+
+});
+
+</script>

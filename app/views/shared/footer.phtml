@@ -1,0 +1,32 @@
+        <footer class="footer">
+          <div align="center">
+                <p class="text-muted"><?php echo date("Y");?> &copy; 24Hit.net.</p>
+          </div>
+        </footer>
+		<a class="back-to-top"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>        
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    //back-to-top
+    var offset = 220;
+    var duration = 500;
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > offset) {
+            $('.back-to-top').fadeIn(duration);
+        } else {
+            $('.back-to-top').fadeOut(duration);
+        }
+    });
+
+    $('.back-to-top').click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    });
+
+
+});
+
+</script>

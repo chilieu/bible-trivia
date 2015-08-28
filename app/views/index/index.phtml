@@ -1,0 +1,24 @@
+<?php echo $this->getContent(); ?>
+
+<div class="row">
+<div class="col-xl-4 col-md-3 col-sm-2 visible-lg-* visible-md-* visible-sm-*"></div>
+
+<div class="col-xl-4 col-md-6 col-sm-12">
+
+	<h1>Bible Trivia!</h1>
+
+	<?php $this->flashSession->output();?>
+
+<form action="<?php echo $this->url->get("user/register"); ?>" method="POST">
+	<div class="form-group">
+		<label for="col-sm-12 email">Register your email before start: </label>
+		<input type="email" class="form-control" id="email" placeholder="Enter email">
+	</div>
+
+	<div class="form-group" align="center"><button class="btn btn-primary">Start the Quiz!</button></div>
+</form>
+
+</div>
+
+<div class="col-xl-4 col-md-3 col-sm-2 visible-lg-* visible-md-* visible-sm-*"></div>
+</div>

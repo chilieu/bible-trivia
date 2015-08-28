@@ -1,0 +1,117 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="row">
+
+
+  <div class="col-lg-6 col-md-8 col-sm-12 center-block">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo $this->url->get();?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    <?php $version = BookBibleVersionKey::find();?>
+    <!--Right Nav-->
+      <?php /*<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Jesus Loves you ...">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+    <form class="navbar-form navbar-right" role="search" id="searchFrm">
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="..." placeholder="Jesus Loves you ...">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="search">Search <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" id="searchType">
+          <?php foreach($version as $item):?>
+          <li><a href="#"><?php echo $item->abbreviation;?></a></li>
+          <?php endforeach;?>
+        </ul>
+      </div>
+    </div>
+    </form>*/ ?>
+
+
+    <!--Left Nav-->
+    <ul class="nav navbar-nav">
+       
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo !empty($_COOKIE["bible-version"]) ? $_COOKIE["bible-version"] : "KJV";?> <span class="caret"></span></a>
+        <ul class="dropdown-menu bible-version" role="menu">
+          <?php foreach($version as $item):?>
+            <li><a href="<?php echo $this->url->get( $this->router->getControllerName() . '/set-version/' . $item->abbreviation);?>"><?php echo $item->abbreviation;?></a></li>
+          <?php endforeach;?>
+        </ul>
+      </li>
+
+      <li class="dropdown menu-large">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo empty($book) ? "Book" : $book;?> <span class="caret"></span></a>
+
+        <ul class="dropdown-menu megamenu row bible-book-container">
+
+          <li class="col-sm-6">
+            <h3 class="dropdown-header">Old Testament</h3>
+            <hr>
+            <ul class="col-sm-6">
+              <?php $ot = BookKeyEnglish::find("t='OT'");?>
+              <?php $c = 0;?>
+              <?php foreach($ot as $item):?>
+              <li class="bible-book"><a href="<?php echo $this->url->get( $this->router->getControllerName() . '-' . $item->slug);?>"><?php echo $item->n;?></a></li>
+              <?php if($c == 20):?>
+                </ul><ul class="col-sm-6">
+              <?php endif;?>
+              <?php $c++;?>
+              <?php endforeach;?>
+            </ul>
+          </li>
+
+          <li class="col-sm-6">
+            <h3 class="dropdown-header">New Testament</h3>
+            <hr>
+            <ul class="col-sm-6">
+              <?php $nt = BookKeyEnglish::find("t='NT'");?>
+              <?php $c = 0;?>
+              <?php foreach($nt as $item):?>
+              <li class="bible-book"><a href="<?php echo $this->url->get( $this->router->getControllerName() . '-' . $item->slug);?>"><?php echo $item->n;?></a></li>
+              <?php if($c == 20):?>
+                </ul><ul class="col-sm-6">
+              <?php endif;?>
+              <?php $c++;?>
+              <?php endforeach;?>
+            </ul>
+          </li>
+
+        </ul>
+
+
+      </li>
+
+      <!--li class="dropdown menu-large" id="megamenu-chapter">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chapter <span class="caret"></span></a>
+        <ul class="dropdown-menu megamenu row bible-chapter-container">
+          <li>
+            <?php for($i = 1; $i< 100; $i++):?>
+              <a class="btn chapter" href="#"><?php echo $i;?></a>
+            <?php endfor;?>
+          </li>
+        </ul>
+      </li-->
+
+    </ul>
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.col-xl-8 col-md-8 col-sm-12 center-block -->
+
+  </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</nav>

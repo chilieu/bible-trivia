@@ -1,0 +1,67 @@
+<?php echo $this->getContent(); ?>
+
+	<h2><?php echo $level->name;?></h2>
+
+	<?php $this->flashSession->output();?>
+
+	<?php $score = round($count_correct * 100 / count($question));?>
+	<h3>YOUR SCORE: <?php echo $score;?>%</h3>
+	
+	<div class="fb-share-button" data-href="http://dev.chilieu.me/quiz/result" data-layout="button_count"></div>
+
+	<?php if($score <= 50):?>
+	<h4>You answered <?php echo $count_correct;?> correctly of <?php echo count($question);?> total random questions from <?php echo $level->name;?>. Oops, time to study more of the Bible. Keep trying.</h4>
+	<?php elseif($score > 50 && $score <= 90):?>
+	<h4>You answered <?php echo $count_correct;?> correctly of <?php echo count($question);?> total random questions from <?php echo $level->name;?>. Good job!</h4>
+	<?php else:?>
+	<h4>You answered <?php echo $count_correct;?> correctly of <?php echo count($question);?> total random questions from <?php echo $level->name;?>. Excellent!</h4>
+	<?php endif;?>
+
+	<?php if($count_correct):?>
+		<div class="alert alert-success" role="alert">Your Correct Answer: <?php echo $count_correct;?></div>
+	<?php endif;?>
+
+	<?php if($count_wrong):?>
+	<div class="alert alert-danger" role="alert">Your Wrong Answer: <?php echo $count_wrong;?></div>
+	<?php endif;?>
+
+
+<?php if( count($question) > 0 ):?>
+	<?php $c = 1;?>
+	<ul class="list-group question-list-result">
+	<?php foreach($question as $item):?>
+		<li class="list-group-item">
+			<a class="list-group-item active"><h4 class="list-group-item-heading"><?php echo $c;?> - <?php echo $item->question;?></h4></a><br>
+		
+			<?php foreach($item->answer as $i):?>
+					<?php if( $corret_answer[$item->id][$i->id] == 1):?>
+						<div class="alert alert-success" role="alert"><b>Your correct answer: </b><u><?php echo $i->answer?></u></div>
+					<?php elseif( $corret_answer[$item->id][$i->id] == 2 ): ?>
+						<div class="alert alert-danger" role="alert"><b>Wrong answer: </b><u><?php echo $i->answer?></u></div>
+					<?php elseif( $corret_answer[$item->id][$i->id] == 3 ): ?>
+						<div class="alert alert-light-green" role="alert"><u><?php echo $i->answer?></u></div>
+					<?php else:?>
+						<div class="alert alert-default" role="alert"><?php echo $i->answer?></div>
+					<?php endif;?>
+			<?php endforeach;?>
+			<?php if( !empty($item->explanation) ):?>
+				<div><strong>Explanation: </strong><blockquote><?php echo $item->explanation;?></blockquote></div>
+			<?php endif;?>
+			<?php if( !empty($item->reference) ):?>
+			<div></strong>Reference: </strong><ins><?php echo $item->reference;?></ins></div>
+			<?php endif;?>
+		</li>
+	<?php $c++;?>
+	<?php endforeach;?>
+	</ul>
+
+<div align="center">
+	<a href="<?php echo $this->url->get("quiz");?>"><button type="submit" class="btn btn-primary">Try another quiz</button></a>
+</div>
+
+<script type="text/javascript">
+</script>
+
+<?php else:?>
+	No question in this category
+<?php endif;?>

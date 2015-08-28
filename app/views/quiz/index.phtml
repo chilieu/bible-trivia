@@ -1,0 +1,28 @@
+<?php echo $this->getContent(); ?>
+
+	<?php $this->flashSession->output();?>
+
+	<h4>Challenge yourself with thousands of questions! Select by difficulty, category, subject or book.</h4>
+
+
+	<?php foreach($category as $item):?>
+		<?php if(count($item->level) > 0):?>
+
+		<div class="list-group">
+
+			<a class="list-group-item active">
+			  <h4 class="list-group-item-heading">By <?php echo $item->name;?></h4>
+			</a>
+		
+			<?php foreach($item->level as $i):?>
+				<?php if(count($i->question)):?>
+			   <a href="<?php echo $this->url->get("quiz/level/" . $i->value); ?>" class="list-group-item">
+			      <h4 class="list-group-item-heading"><?php echo $i->name;?> <small>(<?php echo count($i->question);?> questions)</small></h4>
+			   </a>
+				<?php endif;?>
+			<?php endforeach;?>
+
+		</div>
+
+		<?php endif;?>
+	<?php endforeach;?>

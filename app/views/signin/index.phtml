@@ -1,0 +1,130 @@
+<?php echo $this->getContent(); ?>
+
+	<?php $this->flashSession->output();?>
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" id="signin-register">
+    <li role="presentation" class="active"><a href="#signin" aria-controls="home" role="tab" data-toggle="tab"><h4>Sign in</h4></a></li>
+    <li role="presentation"><a href="#register" aria-controls="profile" role="tab" data-toggle="tab"><h4>Register</h4></a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    
+    <div role="tabpanel" class="tab-pane active" id="signin">
+		
+		<h5>Sign in</h5>
+		
+		<form class="form-horizontal" action="<?php echo $this->url->get("signin/authenticate");?>" method="POST">
+		  <div class="form-group">
+		    <label for="inputEmail2" class="col-sm-3 control-label">Email: </label>
+		    <div class="col-sm-9">
+		      <input type="email" class="form-control" id="inputEmail2" placeholder="signin@example.com" name="email" required autofocus>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword2" class="col-sm-3 control-label">Password: </label>
+		    <div class="col-sm-9">
+		      <input type="password" class="form-control" id="inputPassword2" placeholder="Password" name="password" required>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <div class="col-sm-offset-3 col-sm-9">
+				<a href="<?php echo $this->url->get("signin/forgot-password");?>" >Forgot your password?</a>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="col-sm-offset-3 col-sm-9">
+		      <div class="checkbox">
+		        <label>
+		          <input type="checkbox" name="remember_me" value="1"> Stay signed
+		        </label>
+		      </div>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <div class="col-sm-offset-3 col-sm-9">
+		      <button type="submit" class="btn btn-primary">Sign in</button>
+		    </div>
+		  </div>
+		</form>
+
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="register">
+
+		<h5>Register</h5>
+
+		<form class="form-horizontal" action="<?php echo $this->url->get("signin/register");?>" method="POST">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-3 control-label">Email: </label>
+		    <div class="col-sm-9">
+		      <input type="email" class="form-control" id="inputEmail3" placeholder="register@example.com" name="email" required autofocus>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-3 control-label">Password: </label>
+		    <div class="col-sm-9">
+		      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password" required>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-3 control-label">Confirm password: </label>
+		    <div class="col-sm-9">
+		      <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm password" name="password_confirm" required>
+		    </div>
+		  </div>
+		
+		  <div class="form-group">
+
+		    <label for="inputCaptchaImage" class="col-sm-3 control-label">Captcha: </label>
+		    <div class="col-sm-4">
+		    	<img src="<?php echo $this->url->get("signin/captcha")?>" id="captcha"> 
+		    	<a href="javascript:void();" style="font-size: 18px;vertical-align: middle;" class="reload-captcha"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+		    </div>
+
+			<label for="inputCaptcha" class="col-sm-1 control-label">Type: </label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="inputCaptcha" name="captcha" placeholder="Type the Text" required>
+		    </div>
+
+		  </div>
+
+		  <div class="form-group">
+		    <div class="col-sm-offset-3 col-sm-9">
+		      <button type="submit" class="btn btn-primary">Register</button>
+		    </div>
+		  </div>
+		</form>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$("a.reload-captcha").click(function(e){
+		e.preventDefault();
+		var d = new Date();
+		var img = $("img#captcha").attr("src");
+		$("img#captcha").attr("src", img + "?cache=" + d.getTime());
+	});
+
+
+});
+
+
+</script>

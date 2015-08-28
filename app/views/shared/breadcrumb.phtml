@@ -1,0 +1,21 @@
+<?php if( !empty($this->router->getActionName()) ):?>
+<?php $crumbs = explode("/",$_SERVER["REQUEST_URI"]); ?>
+
+<ol class="breadcrumb">
+
+    <li><a href="<?php echo $this->url->get("");?>">Home</a></li>
+
+  <?php foreach($crumbs as $crumb) : ?>
+
+    <?php if( !empty($crumb) ) :?>
+
+    	<?php $url .= $crumb . "/";?>
+
+      <li><a href="<?php echo $this->url->get($url);?>"><?php echo ucfirst($crumb);?></a></li>
+
+    <?php endif;?>
+
+  <?php endforeach;?>
+  
+</ol>
+<?php endif;?>

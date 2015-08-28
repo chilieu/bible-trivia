@@ -1,0 +1,70 @@
+body {
+	-webkit-font-smoothing: antialiased;
+  	font: 20px/1.8 "Helvetica Neue",Arial,"Liberation Sans",FreeSans,sans-serif;
+}
+.center-block {
+  float:none;
+}
+
+.text-center{text-align: center;}
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+
+a.deactivated{
+  color:#CCC;
+}
+
+span.bible-verse{
+  text-align: justify;
+}
+.bible-verse{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  cursor: default;
+}
+
+.bible-verse+.bible-verse {
+  margin-left: 3px;
+}
+
+.bible-verse>a.label {
+  color: #18bc9c;
+  font-family: "Helvetica Neue",Arial,"Liberation Sans",FreeSans,sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.verse-selected{
+  border-bottom: 2px;
+  border-bottom-style: dotted;
+}
+
+.verse-number-selected{
+  color: #3A62FF !important;
+}
+
+.bible-content{
+    padding: 0 30px;
+}
+
+.next-right, .next-left{
+  background-color: #FFFFFF;
+}
+
+.next-right:hover, .next-left:hover{
+  background-color: #CCCCCC;
+}
+
+.chapter-title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  width: 100%;
+}
+
+.bible-chapter{
+  position: fixed;
+}

@@ -1,0 +1,65 @@
+<?php echo $this->getContent(); ?>
+
+	<h2><?php echo $level->name;?></h2>
+
+	<?php $this->flashSession->output();?>
+
+<?php if( count($question) > 0 ):?>
+
+<form action="<?php echo $this->url->get("quiz/submit");?>" method="POST" >
+	<input name="level_id" value="<?php echo $level->id?>" type="hidden">
+
+
+	<ul class="list-group question-list">
+	<?php $c = 1;?>
+	<?php foreach($question as $item):?>
+		<li class="list-group-item" id="quiz-<?php echo $c;?>">
+			<a class="list-group-item active"><h4 class="list-group-item-heading"><?php echo $c;?> - <?php echo $item->Question->question;?></h4></a>
+		
+			<ul  class="list-group" id="question-<?php echo $item->Question->id;?>">
+			<?php foreach($item->Question->Answer as $i):?>
+				<li class="list-group-item">
+					<a class="btn btn-block btn-default answer" question-id="<?php echo $item->Question->id?>" answer-id="<?php echo $i->id?>" id="answer-<?php echo $i->id?>"><?php echo $i->answer?></a>
+					<input name="answer[<?php echo $item->Question->id;?>][<?php echo $i->id;?>]" type="hidden" id="input-answer-<?php echo $item->Question->id;?>-<?php echo $i->id;?>"
+				</li>
+			<?php endforeach;?>
+			</ul>
+		</li>
+	<?php $c++;?>
+	<?php endforeach;?>
+	</ul>
+
+<div align="center">
+	<button type="submit" class="btn btn-primary">Check Your Answers</button>
+</div>
+
+</form>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$('.answer').click(function(e){
+		var obj = $(this);
+		
+		//reset value
+		obj.closest("li").siblings().children("a.answer").removeClass("active");
+		obj.closest("li").siblings().children("a.answer").siblings("input[type='hidden']").val('');
+
+		//set value selected
+		obj.addClass("active");
+		if( obj.hasClass("active") ){
+			obj.siblings("input[type='hidden']").val('2');
+		} else {
+			obj.siblings("input[type='hidden']").val('');
+		}
+
+	});
+
+});
+
+</script>
+
+<?php else:?>
+	No question in this category
+<?php endif;?>

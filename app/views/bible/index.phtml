@@ -1,0 +1,41 @@
+<?php echo $this->getContent(); ?>
+
+<div class="col-lg-6 col-md-8 col-sm-12 center-block" id="bible-chapter">
+	<h2 class="text-center">Chapter 01</h2>
+</div>
+
+<div id="bible-paragraph"></div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+
+<?php /*
+	$("a").click(function(){
+		var bible_hash = $(this).attr("href").replace('#', '');
+		var div_selector_id = "bible-paragraph";
+
+	    var target = document.getElementById(div_selector_id);
+		var spinner = new Spinner().spin();
+		target.appendChild(spinner.el);
+
+		$.ajax({
+		  url: '<?php echo $this->url->get( $this->router->getControllerName() . '/hash-bible/');?>',
+		  type: 'POST',
+		  data: 'bible_hash=' + bible_hash,
+		  success: function(data) {
+			//called when successful
+			$('#' + div_selector_id).html(data);
+		  },
+		  error: function(e) {
+			//called when there is an error
+			//console.log(e.message);
+		  }
+		});
+	});
+*/ ?>
+
+});
+
+</script>
